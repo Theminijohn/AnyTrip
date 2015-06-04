@@ -8,7 +8,39 @@
 </head>
 <body>
 
-<%= yield %>
+<% unless flash.empty? %>
+  <script type="text/javascript">
+    <% flash.each do |f| %>
+      <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "500",
+        "timeOut": "3000",
+        "extendedTimeOut": "300",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+      toastr['<%= type %>']('<%= f[1] %>', '<%= type %>');
+    <% end %>
+  </script>
+<% end %>
+
+<%= render 'layouts/header' %>
+
+<div class="container">
+	<%= yield %>
+</div>
+
+<%= render 'layouts/footer' %>
 
 </body>
 </html>
