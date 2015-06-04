@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Airline:</strong>
+  <%= @trip.airline %>
+</p>
+
+<p>
+  <strong>Departure date:</strong>
+  <%= @trip.departure_date %>
+</p>
+
+<p>
+  <strong>Flight number:</strong>
+  <%= @trip.flight_number %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @trip.status %>
+</p>
+
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>
