@@ -1,28 +1,37 @@
-== README
+# AnyTrip - v. 0.0.1
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+We are a Travel Company, hence we should travel more than 'mortal humans'. With the team growing MoM and YoY, tracking Flights and staying informed about a colleagues Trip becomes a funny task.
 
-Things you may want to cover:
+Let's say we are in a Magical World, where there is a Magical Application that keeps track of all of that :bowtie:.
 
-* Ruby version
+## Flight Status & Track
 
-* System dependencies
+Flight Status deals with questions such as:
 
-* Configuration
+- Is my flight on time?
+- How long is the delay?
+- Is it cancelled?
+- What is my departure or arrival gate and terminal?
+- What type of plane is used on this flight?
 
-* Database creation
+Flight Track consists of positional information/updates and answers questions such as:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- What is the planned flight path for this flight?
+- Where is it now?
+- Where has it been up to now?
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## AnyTrip Score
+
+Of course plain vanilla information is usefull, but not that fun right? Let's gamify it:
+
+#### Ranks: 
+- :facepunch: Keep track of the Internal Rank Ladder.
+- :facepunch: Climb dat ladder, climb it forest!
+
+#### Points: 
+- :facepunch: Everytime your Fly you'll get points.
+- :facepunch: Of course miles matter, the longer the flight.. you get it.
+
+#### Summits:
+- :facepunch: Summits will give every travelroadie the same points BUT will take into account Layovers and/or connection flights etc.
