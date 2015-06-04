@@ -1,0 +1,14 @@
+default: &default
+  adapter: postgresql
+  username: theminijohn
+  password: hearthscr
+  pool: 10
+
+development:
+  <<: *default
+  database: anytrip_development
+
+test: &test
+  <<: *default
+  encoding: utf8
+  database: anytrip_testing
