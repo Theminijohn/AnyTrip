@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'pg'
+gem 'rails_config'
 
 # Users & Auth
 gem 'devise'
@@ -17,6 +18,9 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'font-awesome-rails'
 gem 'ionicons-rails'
+
+# Flight Statistics
+gem 'flightstats-flex', '~> 0.4.0'
 
 group :development, :test do
   gem 'byebug'

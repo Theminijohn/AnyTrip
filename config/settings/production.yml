@@ -1,0 +1,3 @@
+flightstats:
+  app_id: <%= ENV['FLIGHTSTATS_APP_ID'] %>
+  app_key: <%= ENV['FLIGHTSTATS_APP_KEY'] %>

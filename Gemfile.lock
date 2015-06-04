@@ -86,6 +86,7 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.8)
+    flightstats-flex (0.4.0)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
     globalid (0.3.5)
@@ -136,6 +137,8 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
+    rails_config (0.4.2)
+      activesupport (>= 3.0)
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.3)
     railties (4.2.1)
@@ -217,6 +220,7 @@ DEPENDENCIES
   devise
   factory_girl_rails (~> 4.5.0)
   faker (~> 1.4.3)
+  flightstats-flex (~> 0.4.0)
   font-awesome-rails
   ionicons-rails
   jquery-rails
@@ -224,6 +228,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.1)
   rails_12factor
+  rails_config
   rspec-rails (~> 3.2.2)
   sass-rails (~> 5.0)
   selenium-webdriver (~> 2.43.0)
