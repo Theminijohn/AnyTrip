@@ -21,6 +21,7 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-rails'
 gem 'ionicons-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'ruby-progressbar'
 gem 'chosen-rails'
 
 # Flight Statistics
