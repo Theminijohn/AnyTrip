@@ -50,5 +50,8 @@ module AnyTrip
                                request_specs: false
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+
+    # Include Lib Folder
+    config.autoload_paths << Rails.root.join('lib')
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610080932) do
+ActiveRecord::Schema.define(version: 20150610114037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,16 +31,40 @@ ActiveRecord::Schema.define(version: 20150610080932) do
   add_index "airlines", ["icao"], name: "index_airlines_on_icao", using: :btree
   add_index "airlines", ["name"], name: "index_airlines_on_name", using: :btree
 
+  create_table "flight_details", force: :cascade do |t|
+    t.string   "arrival_airport_fs_code"
+    t.datetime "arrival_date_local"
+    t.datetime "arrival_date_utc"
+    t.string   "departure_airport_fs_code"
+    t.datetime "departure_date_local"
+    t.datetime "departure_date_utc"
+    t.integer  "flight_duration"
+    t.integer  "flight_id"
+    t.string   "flight_number"
+    t.datetime "scheduled_gate_arrival_local"
+    t.datetime "scheduled_gate_arrival_utc"
+    t.datetime "scheduled_gate_departure_local"
+    t.datetime "scheduled_gate_departure_utc"
+    t.string   "status"
+    t.integer  "trip_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "flight_details", ["flight_id"], name: "index_flight_details_on_flight_id", using: :btree
+  add_index "flight_details", ["trip_id"], name: "index_flight_details_on_trip_id", using: :btree
+
   create_table "trips", force: :cascade do |t|
-    t.string   "airline"
     t.datetime "departure_date"
     t.string   "flight_number"
     t.text     "status"
     t.integer  "user_id"
+    t.integer  "airline_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
+  add_index "trips", ["airline_id"], name: "index_trips_on_airline_id", using: :btree
   add_index "trips", ["departure_date"], name: "index_trips_on_departure_date", using: :btree
   add_index "trips", ["flight_number"], name: "index_trips_on_flight_number", using: :btree
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
@@ -73,4 +97,5 @@ ActiveRecord::Schema.define(version: 20150610080932) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "flight_details", "trips"
 end
