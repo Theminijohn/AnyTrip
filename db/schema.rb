@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150610114037) do
   create_table "trips", force: :cascade do |t|
     t.datetime "departure_date"
     t.string   "flight_number"
+    t.integer  "flight_id"
     t.text     "status"
     t.integer  "user_id"
     t.integer  "airline_id"
@@ -66,6 +67,7 @@ ActiveRecord::Schema.define(version: 20150610114037) do
 
   add_index "trips", ["airline_id"], name: "index_trips_on_airline_id", using: :btree
   add_index "trips", ["departure_date"], name: "index_trips_on_departure_date", using: :btree
+  add_index "trips", ["flight_id"], name: "index_trips_on_flight_id", using: :btree
   add_index "trips", ["flight_number"], name: "index_trips_on_flight_number", using: :btree
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 

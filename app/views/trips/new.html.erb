@@ -15,12 +15,7 @@
 
   <div class="form-group">
     <%= f.label :airline %><br>
-    <%= f.collection_select :airline_id, Airline.all, :id, :name, {include_blank: true}, {class: 'chosen-select'} %>
-    <%#= f.collection_select :airline_id,
-      Airline.all.map { |a| [a.name, a.id] },
-                   { include_blank: true },
-                   { class: 'chosen-select' }
-    %>
+    <%= f.collection_select :airline_id, Airline.all, :id, :select_name, {include_blank: true}, {class: 'chosen-select'} %>
   </div>
   <div class="form-group">
     <%= f.label :flight_number %><br>
