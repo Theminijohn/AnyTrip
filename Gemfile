@@ -26,6 +26,7 @@ gem 'chosen-rails'
 
 # Flight Statistics
 gem 'flightstats-flex', '~> 0.4.0'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug'

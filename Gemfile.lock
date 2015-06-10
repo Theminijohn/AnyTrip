@@ -118,6 +118,7 @@ GEM
     flightstats-flex (0.4.0)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
+    geocoder (1.2.8)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -277,6 +278,7 @@ DEPENDENCIES
   faker (~> 1.4.3)
   flightstats-flex (~> 0.4.0)
   font-awesome-rails
+  geocoder
   ionicons-rails
   jquery-rails
   jquery-turbolinks

@@ -2,12 +2,17 @@ class CreateFlightDetails < ActiveRecord::Migration
   def change
     create_table :flight_details do |t|
       t.string :arrival_airport_fs_code
+      t.float :arrival_airport_latitude
+      t.float :arrival_airport_longitude
       t.datetime :arrival_date_local
       t.datetime :arrival_date_utc
       t.string :departure_airport_fs_code
+      t.float :departure_airport_latitude
+      t.float :departure_airport_longitude
       t.datetime :departure_date_local
       t.datetime :departure_date_utc
       t.integer :flight_duration
+      t.float :flight_distance
       t.integer :flight_id
       t.string :flight_number
       t.datetime :scheduled_gate_arrival_local

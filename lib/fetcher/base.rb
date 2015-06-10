@@ -33,7 +33,6 @@ module Fetcher
 
 		def flight_statistics
 			@flights = FlightStats::FlightStatus.departing_on @iata ,@flight_number, @year, @month, @day
-			binding.pry
 		end
 
 	end
