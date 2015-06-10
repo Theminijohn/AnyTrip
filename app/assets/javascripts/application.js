@@ -4,5 +4,6 @@
 //= require bootstrap-sprockets
 //= require toastr
 //= require bootstrap-datepicker
+//= require chosen-jquery
 //= require turbolinks
 //= require_tree .

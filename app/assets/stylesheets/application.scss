@@ -18,6 +18,7 @@ $container-large-desktop:  ((800px + $grid-gutter-width));
 @import 'ionicons';
 @import 'toastr';
 @import 'bootstrap-datepicker3';
+@import 'chosen';
 
 @import 'base/*';
 @import 'devise/*';
