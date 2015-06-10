@@ -1,0 +1,86 @@
+.section_header {
+	text-align: center;
+	font-size: 16px;
+	margin-bottom: 30px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	h2 {
+		font-family: 'Titillium Web', sans-serif;
+		font-weight: 700;
+		letter-spacing: -1px;
+		font-size: 30px;
+		margin-bottom: 0;
+		margin-top: 0;
+		span {
+			color: #e04f67;
+		}
+	}
+	p {
+		font-weight: 300;
+		font-size: 20px;
+	}
+}
+
+
+// 
+
+.page-box-link {
+  color: inherit;
+  text-decoration: none;
+  &:hover, &:focus {
+  	text-decoration: none;
+  }
+}
+
+.page-box {
+	font-size: 15px;
+	background: #e9eaeb;
+	background-image: -webkit-linear-gradient(top,rgba(255,255,255,0.45) 0,rgba(255,255,255,0.25) 100%);
+	background-image: -o-linear-gradient(top,rgba(255,255,255,0.45) 0,rgba(255,255,255,0.25) 100%);
+	background-image: linear-gradient(to bottom,rgba(255,255,255,0.45) 0,rgba(255,255,255,0.25) 100%);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#73ffffff',endColorstr='#40ffffff',GradientType=0);
+	padding: 2rem;
+	margin-bottom: 3rem;
+	position: relative;
+	border-radius: 3px 0 3px 3px;
+	overflow: hidden;
+	-webkit-box-shadow: 0 3px 2px -3px rgba(0,0,0,0.5);
+	box-shadow: 0 3px 2px -3px rgba(0,0,0,0.5);
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: block;
+		width: 0;
+		border: 1.5rem solid #fff;
+		background: rgba(0,0,0,0.12);
+		border-color: #fff #fff transparent transparent;
+		border-radius: 0 0 0 4px;
+		-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3),-1px 1px 1px rgba(0,0,0,0.2);
+		box-shadow: 0 1px 1px rgba(0,0,0,0.3),-1px 1px 1px rgba(0,0,0,0.2);
+	}
+	.entry-title {
+		font-size: 17px;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+	.entry-excerpt {
+		font-size: 36px;
+		text-align: center;
+	}
+	.page-box-destination {
+		color: #95979c;
+		font-size: 14px;
+		margin-top: 2rem;
+		i.fa {
+			font-size: 18px;
+			margin-right: 1rem;
+		}
+	}
+}
+
+.page-box-link:hover .page-box:before, .page-box-link:active .page-box:before, .page-box-link:focus .page-box:before {
+  background: #e04f67;
+}

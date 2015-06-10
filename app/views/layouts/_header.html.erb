@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to root_path, class: 'navbar-brand' do %>
-        AnyTrip
+        <i class="ion-plane"></i> AnyTrip
       <% end %>
     </div>
 
@@ -50,19 +50,24 @@
             <ul class="dropdown-menu" role="menu">
               <li>
                 <%= link_to new_trip_path do %>
-                  <i class="ion-paper-airplane"></i> New Trip
+                  <i class="ion-android-plane"></i> New Trip
+                <% end %>
+              </li>
+              <li>
+                <%= link_to current_user do %>
+                  <i class="ion-android-pin"></i> My Profile
                 <% end %>
               </li>
               <li>
                 <%= link_to edit_user_registration_path do %>
-                  <i class="ion-gear-b"></i>
+                  <i class="ion-android-options"></i>
                   Account Settings
                 <% end %>
               </li>
               <li class="divider"></li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
-                  <i class="ion-log-out"></i>
+                  <i class="ion-android-radio-button-on"></i>
                   Logout
                 <% end %>
               </li>

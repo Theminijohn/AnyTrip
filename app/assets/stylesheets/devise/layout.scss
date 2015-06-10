@@ -1,0 +1,68 @@
+.devise_layout {
+	background-image: url(http://para.llel.us/themes/goexplore/demo/wp-content/uploads/sites/2/L2NfDz5SOm7Gbf755qpw_DSCF0490.jpg);
+	background-size: cover;
+	height: 100%;
+}
+
+.devise_login {
+	background: rgba(17,17,17,0.7);
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	max-width: 100%;
+	width: 80%;
+	height: 100%;
+	padding-left: 10%;
+	padding-right: 10%;
+	display: table;
+  margin: auto;
+  -webkit-transition: all 300ms ease;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  -ms-transition: all 300ms ease;
+  transition: all 300ms ease;
+	h1 {
+		margin: 0;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		a {
+			display: inline-block;
+			height: 100px;
+			width: 100%;
+			max-width: 480px;
+			margin: 0 auto 25px;
+			text-indent: -9999px;
+			background-image: url('http://para.llel.us/themes/goexplore/demo/wp-content/themes/parallelus-go-explore/assets/images/login-logo.png');
+			-webkit-background-size: contain;
+			background-size: contain;
+			background-position: 50%;
+			vertical-align: middle;
+			&:hover, &:active, &:focus {
+				outline: none;
+			}
+		}
+	}
+	.form-group {
+		label {
+			color: #95979c;
+			width: 100%;
+			font-size: 15px;
+			font-weight: 400;
+		}
+	}
+}
+
+// Breakpoints Yo
+@media (min-width: 768px) {
+	.devise_login {
+	  padding-left: 10%;
+	  padding-right: 10%;
+	  width: 45%;
+	  margin: auto 0 auto auto;
+	  padding-top: 8%;
+	  padding-bottom: 8%;
+	  h1 a {
+	  	height: 150px;
+	  }
+	}
+}

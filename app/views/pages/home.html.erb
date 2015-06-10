@@ -6,50 +6,63 @@
 	</ol>
 
 	<div class="row">
-		<div class="col-md-4">
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-			  	Flights Tracked
-			  	<div class="pull-right">
-			  		<%= link_to 'See all Trips', trips_path, class: 'btn btn-primary btn-xs' %>
-			  	</div>
-			  </div>
-			  <div class="panel-body text-center">
-			  	<h1>
-			  		92
-			  	</h1>
-			  </div>
-			</div>
+		<div class="col-sm-6 col-lg-4">
+		  <a class="page-box-link" href="#">
+		  <article class="page-box">
+		    <h3 class="entry-title">Flights Tracked</h3>
+
+		    <p class="entry-excerpt">
+		    	<%= Trip.count %>
+		    </p>
+
+		    <div class="page-box-destination">
+		      <span><i class="fa fa-map-marker"></i> See all Trips</span>
+		    </div>
+		  </article></a>
 		</div>
-		<div class="col-md-4">
-			<div class="panel panel-default">
-			  <div class="panel-heading">Miles Counted</div>
-			  <div class="panel-body text-center">
-			    <h1>
-			    	43.642
-			    </h1>
-			  </div>
-			</div>
+
+		<div class="col-sm-6 col-lg-4">
+		  <a class="page-box-link" href="#">
+		  <article class="page-box">
+		    <h3 class="entry-title">Miles Counted</h3>
+
+		    <p class="entry-excerpt">
+		    	43.642
+		    </p>
+
+		    <div class="page-box-destination">
+		      <span><i class="fa fa-map-marker"></i> View map</span>
+		    </div>
+		  </article></a>
 		</div>
-		<div class="col-md-4">
-			<div class="panel panel-default">
-			  <div class="panel-heading">AnyRoadies Registered</div>
-			  <div class="panel-body text-center">
-			    <h1>
-			    	18
-			    </h1>
-			  </div>
-			</div>
+
+		<div class="col-sm-6 col-lg-4">
+		  <a class="page-box-link" href="#">
+		  <article class="page-box">
+		    <h3 class="entry-title">AnyRoadies</h3>
+
+		    <p class="entry-excerpt">
+		    	<%= User.count %>
+		    </p>
+
+		    <div class="page-box-destination">
+		      <span><i class="fa fa-map-marker"></i> See Ladder</span>
+		    </div>
+		  </article></a>
 		</div>
+
 	</div>
 
 	<br>
 	<br>
-
-	<div class="text-center">
+	
+	<div class="section_header">
 		<h2>
-			Rank List
+			Anyroad <span>Rank</span> list
 		</h2>
+		<p>
+			Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+		</p>
 		<div style="width: 100%;padding-bottom: 20px;">
 			<span style="background-color:#f1f1f1;width: 80px;height: 4px;display: block;margin: auto;"></span>
 		</div>

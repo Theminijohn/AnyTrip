@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+  <title>AnyTrip</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="devise_layout">
+
+<% unless flash.empty? %>
+  <script type="text/javascript">
+    <% flash.each do |f| %>
+      <% type = f[0].gsub('alert', 'error').gsub('notice', 'info') %>
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "500",
+        "timeOut": "3000",
+        "extendedTimeOut": "300",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
+      toastr['<%= type %>']('<%= f[1] %>', '<%= type %>');
+    <% end %>
+  </script>
+<% end %>
+
+<div class="devise_login">
+  <h1>
+    <a href="/login" title="AnyTrip - AnyRoad" tabindex="-1">AnyTrip by AnyRoad</a>
+  </h1>
+	 <%= yield %>
+</div>
+
+</body>
+</html>

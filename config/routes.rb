@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
   resources :trips
   root 'pages#home'
 
@@ -11,5 +13,7 @@ Rails.application.routes.draw do
     controllers: {
     	registrations: 'registrations'
     }
+
+  get 'users/:id' => 'users#show', as: :user 
 
 end
