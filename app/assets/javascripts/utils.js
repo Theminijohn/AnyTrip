@@ -9,6 +9,7 @@ $(document).ready(function () {
 	$(".chosen-select").chosen({
 		allow_single_deselect: true,
     no_results_text: 'No Airline matched',
-    width: '200px'
+    placeholder_text_single: 'Select an Airline',
+    width: '100%'
 	});
 })

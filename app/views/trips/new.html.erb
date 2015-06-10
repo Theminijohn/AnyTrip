@@ -1,5 +1,37 @@
 <h1>New Trip</h1>
 
-<%= render 'form' %>
+<%= form_for(@trip) do |f| %>
+  <% if @trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
 
-<%= link_to 'Back', trips_path %>
+      <ul>
+      <% @trip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :airline %><br>
+    <%= f.select :airline,
+      Airline.all.map { |a| [a.name, a.id] },
+                   { include_blank: true },
+                   { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="form-group">
+    <%= f.label :flight_number %><br>
+    <%= f.text_field :flight_number, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :departure_date %><br>
+    <%= f.text_field :departure_date, class: 'form-control datepicker', required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
+

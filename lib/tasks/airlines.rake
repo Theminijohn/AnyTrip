@@ -11,7 +11,7 @@ task import_airlines: :environment do
                                  title:          'Importing Airlines')
 
 
-  ### BIG ASS AIRLINES LIST ###
+  ### BIG ASS AIRLINES LIST - 1352 ###
   active_airlines = [
     {
      "fs": "LCI",
@@ -9193,7 +9193,17 @@ task import_airlines: :environment do
     }
   ]
 
-  active_airlines.each do |airline|
+  progress.total = active_airlines.count
 
+  active_airlines.each do |a|
+    Airline.create(
+      fs:     a[:fs],
+      iata:   a[:iata],
+      icao:   a[:icao],
+      name:   a[:name],
+      active: a[:active],
+      phone_number: a[:phoneNumber]
+    )
+    progress.increment
   end
 end

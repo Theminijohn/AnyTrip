@@ -14,7 +14,7 @@
   <div class="form-group">
     <%= f.label :airline %><br>
     <%= f.select :airline,
-      User.all.map { |u| [u.first_name, u.id] },
+      Airline.all.map { |a| [a.name, a.id] },
                    { include_blank: true },
                    { class: 'chosen-select' }
     %>
