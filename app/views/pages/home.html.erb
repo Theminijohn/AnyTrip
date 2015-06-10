@@ -1,2 +1,90 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+	<ol class="breadcrumb">
+	  <li class="active">
+	  	“The world is a book and those who do not travel read only one page.” – St. Augustine
+	  </li>
+	</ol>
+
+	<div class="row">
+		<div class="col-md-4">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			  	Flights Tracked
+			  	<div class="pull-right">
+			  		<%= link_to 'See all Trips', trips_path, class: 'btn btn-primary btn-xs' %>
+			  	</div>
+			  </div>
+			  <div class="panel-body text-center">
+			  	<h1>
+			  		92
+			  	</h1>
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+			  <div class="panel-heading">Miles Counted</div>
+			  <div class="panel-body text-center">
+			    <h1>
+			    	43.642
+			    </h1>
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+			  <div class="panel-heading">AnyRoadies Registered</div>
+			  <div class="panel-body text-center">
+			    <h1>
+			    	18
+			    </h1>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div class="text-center">
+		<h2>
+			Rank List
+		</h2>
+		<div style="width: 100%;padding-bottom: 20px;">
+			<span style="background-color:#f1f1f1;width: 80px;height: 4px;display: block;margin: auto;"></span>
+		</div>
+	</div>
+
+	<table class="table table-striped">
+	  <tbody>
+	    <tr>
+	      <th scope="row">1</th>
+	      <td>The Mini John</td>
+	      <td>8 Flights</td>
+	      <td>15.341 miles</td>
+	      <td class="pull-right">
+	      	<a href="#" class="btn btn-primary btn-xs">view profile</a>
+	      </td>
+	    </tr>
+	    <tr>
+	      <th scope="row">2</th>
+	      <td>Bogdan</td>
+	      <td>5 Flights</td>
+	      <td>11.240 miles</td>
+	      <td class="pull-right">
+	      	<a href="#" class="btn btn-primary btn-xs">view profile</a>
+	      </td>
+	    </tr>
+	    <tr>
+	      <th scope="row">3</th>
+	      <td>Christian</td>
+	      <td>6 Flights</td>
+	      <td>7.461 miles</td>
+	      <td class="pull-right">
+	      	<a href="#" class="btn btn-primary btn-xs">view profile</a>
+	      </td>
+	    </tr>
+	  </tbody>
+	</table>
+
+</div>

@@ -16,8 +16,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li>
+          <a href="#">Ranklist</a>
+        </li>
+        <li>
+          <a href="#">FAQ</a>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -34,13 +38,21 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li>
+            <%= link_to new_trip_path do %>
+              <i class="ion-plus"></i>
+            <% end %>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
               <%= current_user.first_name %> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
+              <li>
+                <%= link_to new_trip_path do %>
+                  <i class="ion-paper-airplane"></i> New Trip
+                <% end %>
+              </li>
               <li>
                 <%= link_to edit_user_registration_path do %>
                   <i class="ion-gear-b"></i>

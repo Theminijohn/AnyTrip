@@ -3,11 +3,14 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 gem 'rails', '4.2.1'
 gem 'sass-rails', '~> 5.0'
+gem 'compass-rails', '~> 2.0.4'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 gem 'pg'
+gem 'rails_config'
 
 # Users & Auth
 gem 'devise'
@@ -17,6 +20,12 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'font-awesome-rails'
 gem 'ionicons-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'ruby-progressbar'
+gem 'chosen-rails'
+
+# Flight Statistics
+gem 'flightstats-flex', '~> 0.4.0'
 
 group :development, :test do
   gem 'byebug'
@@ -24,6 +33,10 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails', '~> 3.2.2'
   gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
 end
 
 group :test do
