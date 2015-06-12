@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610114037) do
+ActiveRecord::Schema.define(version: 20150612211820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,46 @@ ActiveRecord::Schema.define(version: 20150610114037) do
   add_index "airlines", ["icao"], name: "index_airlines_on_icao", using: :btree
   add_index "airlines", ["name"], name: "index_airlines_on_name", using: :btree
 
+  create_table "airports", force: :cascade do |t|
+    t.string   "city"
+    t.string   "city_code"
+    t.integer  "classification"
+    t.string   "country_code"
+    t.string   "country_name"
+    t.string   "delay_index_url"
+    t.integer  "elevation_feet"
+    t.string   "faa"
+    t.string   "fs"
+    t.string   "href"
+    t.string   "iata"
+    t.string   "icao"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "name"
+    t.string   "postal_code"
+    t.string   "region_name"
+    t.string   "state_code"
+    t.string   "street"
+    t.string   "time_zone_region_name"
+    t.float    "utc_offset_hours"
+    t.string   "weather_url"
+    t.string   "weather_zone"
+    t.integer  "flight_detail_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "airports", ["city"], name: "index_airports_on_city", using: :btree
+  add_index "airports", ["flight_detail_id"], name: "index_airports_on_flight_detail_id", using: :btree
+
+  create_table "airports_trips", id: false, force: :cascade do |t|
+    t.integer "airport_id", null: false
+    t.integer "trip_id",    null: false
+  end
+
+  add_index "airports_trips", ["airport_id", "trip_id"], name: "index_airports_trips_on_airport_id_and_trip_id", using: :btree
+  add_index "airports_trips", ["trip_id", "airport_id"], name: "index_airports_trips_on_trip_id_and_airport_id", using: :btree
+
   create_table "flight_details", force: :cascade do |t|
     t.string   "arrival_airport_fs_code"
     t.string   "departure_airport_fs_code"
@@ -39,8 +79,8 @@ ActiveRecord::Schema.define(version: 20150610114037) do
     t.string   "carrier_fs_code"
     t.datetime "departure_date_local"
     t.datetime "departure_date_utc"
-    t.integer  "sheduled_block_minutes"
-    t.string   "sheduled_equipment_iata_code"
+    t.integer  "scheduled_block_minutes"
+    t.string   "scheduled_equipment_iata_code"
     t.integer  "flight_id"
     t.string   "flight_number"
     t.datetime "published_local_arrival"
@@ -104,5 +144,6 @@ ActiveRecord::Schema.define(version: 20150610114037) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "airports", "flight_details"
   add_foreign_key "flight_details", "trips"
 end

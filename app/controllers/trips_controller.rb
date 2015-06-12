@@ -26,7 +26,19 @@ class TripsController < ApplicationController
         @trip.save
       end
 
+      # Create Flight
       @trip.flight_details.create(data.to_h)
+
+      # Create Airports
+      iatas = [data.departure_airport_fs_code, data.arrival_airport_fs_code]
+      iatas.each do |i|
+        airport = Airport.where(iata: i).first_or_initialize do |new_airport|
+          airport = Fetcher::AirportFetcher.new(airport_iata: i).fetch
+          new_airport.assign_attributes(airport.to_h)
+          new_airport.save!
+        end
+        @trip.airports << airport
+      end
 
       redirect_to @trip, notice: 'Your Trip was successfully created, Have a nice Flight.'
     rescue Fetcher::FetchError, ActiveRecord::RecordInvalid => e
