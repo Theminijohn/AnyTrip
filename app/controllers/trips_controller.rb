@@ -19,10 +19,19 @@ class TripsController < ApplicationController
     @trip = current_user.trips.new(trip_params)
     @trip.flight_number = @trip.flight_number.gsub(/\D/, "")
 
-    if @trip.save
-      Fetcher::StatusFetcher.new(trip: @trip).fetch
-      redirect_to @trip, notice: 'Your trip was successfully created.'
-    else
+    begin
+      data = Fetcher::StatusFetcher.new(trip: @trip).fetch
+
+      if data.any?
+        @trip.save
+      end
+
+      @trip.flight_details.create(data.to_h)
+
+      redirect_to @trip, notice: 'Your Trip was successfully created, Have a nice Flight.'
+    rescue Fetcher::FetchError, ActiveRecord::RecordInvalid => e
+      error_message = e.message || "We couldn't verify that Flight, Please Contact TMJ."
+      flash[:notice] = error_message
       render :new
     end
   end

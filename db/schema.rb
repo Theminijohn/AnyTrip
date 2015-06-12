@@ -33,23 +33,26 @@ ActiveRecord::Schema.define(version: 20150610114037) do
 
   create_table "flight_details", force: :cascade do |t|
     t.string   "arrival_airport_fs_code"
-    t.float    "arrival_airport_latitude"
-    t.float    "arrival_airport_longitude"
+    t.string   "departure_airport_fs_code"
     t.datetime "arrival_date_local"
     t.datetime "arrival_date_utc"
-    t.string   "departure_airport_fs_code"
-    t.float    "departure_airport_latitude"
-    t.float    "departure_airport_longitude"
+    t.string   "carrier_fs_code"
     t.datetime "departure_date_local"
     t.datetime "departure_date_utc"
-    t.integer  "flight_duration"
-    t.float    "flight_distance"
+    t.integer  "sheduled_block_minutes"
+    t.string   "sheduled_equipment_iata_code"
     t.integer  "flight_id"
     t.string   "flight_number"
+    t.datetime "published_local_arrival"
+    t.datetime "published_utc_arrival"
+    t.datetime "published_departure_local"
+    t.datetime "published_departure_utc"
     t.datetime "scheduled_gate_arrival_local"
     t.datetime "scheduled_gate_arrival_utc"
     t.datetime "scheduled_gate_departure_local"
     t.datetime "scheduled_gate_departure_utc"
+    t.string   "flight_type"
+    t.string   "service_classes"
     t.string   "status"
     t.integer  "trip_id"
     t.datetime "created_at",                     null: false
@@ -61,9 +64,8 @@ ActiveRecord::Schema.define(version: 20150610114037) do
 
   create_table "trips", force: :cascade do |t|
     t.datetime "departure_date"
-    t.string   "flight_number"
-    t.integer  "flight_id"
     t.text     "status"
+    t.string   "flight_number"
     t.integer  "user_id"
     t.integer  "airline_id"
     t.datetime "created_at",     null: false
@@ -72,8 +74,6 @@ ActiveRecord::Schema.define(version: 20150610114037) do
 
   add_index "trips", ["airline_id"], name: "index_trips_on_airline_id", using: :btree
   add_index "trips", ["departure_date"], name: "index_trips_on_departure_date", using: :btree
-  add_index "trips", ["flight_id"], name: "index_trips_on_flight_id", using: :btree
-  add_index "trips", ["flight_number"], name: "index_trips_on_flight_number", using: :btree
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|

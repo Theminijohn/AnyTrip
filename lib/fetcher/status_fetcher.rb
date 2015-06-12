@@ -1,59 +1,70 @@
 module Fetcher
 	class StatusFetcher < Base
 
-		attr_reader :trip_id, :iata, :flight_number, :year, :month, :day
+		attr_reader :trip, :iata, :flight_number, :year, :month, :day
+
+    FlightDetail = Struct.new(
+			:arrival_airport_fs_code, :departure_airport_fs_code, :arrival_date_local, :arrival_date_utc, 
+			:carrier_fs_code, :departure_date_local, :departure_date_utc, :sheduled_block_minutes, 
+			:sheduled_equipment_iata_code, :flight_id, :flight_number, :published_local_arrival, :published_utc_arrival, 
+			:published_departure_local, :published_departure_utc, :scheduled_gate_arrival_local, :scheduled_gate_arrival_utc, 
+			:scheduled_gate_departure_local, :scheduled_gate_departure_utc, :flight_type, :service_classes, :status
+		)
 
 		def post_initialize(args)
 			@trip  = args[:trip]
+			@iata  = @trip.airline.iata
+			@day   = @trip.departure_date.day
+			@year  = @trip.departure_date.year
+			@month = @trip.departure_date.month
+			@flight_number = @trip.flight_number
     end
 
     def perform
     	begin
-				create_flight_details(flight_statistics)
+				create_flight_details(flights.first)
     	rescue StandardError
     		raise FetchError, "We couldn't fetch you Flight Details! Please contact TMJ"
     	end
-
     end
 
-    private
+	private
 
-    def create_flight_details(flights)
-    	flights.each do |f|
+    def create_flight_details(flight)
+			FlightDetail.new(
+				flight.arrival_airport_fs_code,
+				flight.departure_airport_fs_code,
+				flight.arrival_date.date_local,
+				flight.arrival_date.date_utc,
 
-    		# Compute Distance
-				departure_airport = FlightStats::Airport.current f.departure_airport_fs_code
-				arrival_airport 	= FlightStats::Airport.current f.arrival_airport_fs_code
+				flight.carrier_fs_code,
+				flight.departure_date.date_local,
+				flight.departure_date.date_local,
+				flight.flight_durations.scheduled_block_minutes,
 
-				distance = Geocoder::Calculations.distance_between(
-					[departure_airport.latitude, departure_airport.longitude], 
-					[arrival_airport.latitude, arrival_airport.longitude], 
-					{units: :km}
-				)
+				flight.flight_equipment.scheduled_equipment_iata_code,
+				flight.flight_id,
+				flight.flight_number,
 
-				@trip.flight_details.create(
-					arrival_airport_fs_code:        f.arrival_airport_fs_code,
-					arrival_date_local:             f.arrival_date.date_local,
-					arrival_date_utc:               f.arrival_date.date_utc,
-					departure_airport_fs_code:      f.departure_airport_fs_code,
-					departure_date_local:           f.departure_date.date_local,
-					departure_date_utc:             f.departure_date.date_utc,
-					flight_duration:                f.flight_durations.scheduled_block_minutes,
-					flight_id:                      f.flight_id,
-					flight_number:                  f.flight_number,
-					scheduled_gate_arrival_local:   f.operational_times.scheduled_gate_arrival.date_local,
-					scheduled_gate_arrival_utc:     f.operational_times.scheduled_gate_arrival.date_utc,
-					scheduled_gate_departure_local: f.operational_times.scheduled_gate_departure.date_local,
-					scheduled_gate_departure_utc:   f.operational_times.scheduled_gate_departure.date_utc,
-					status:                         f.status,
-					arrival_airport_latitude:       arrival_airport.latitude,
-					arrival_airport_longitude:      arrival_airport.longitude,
-					departure_airport_latitude:     departure_airport.latitude,
-					departure_airport_longitude:    departure_airport.longitude,
-					flight_distance:                distance,
-					trip_id:                        @trip_id
-				)
-			end
+				flight.operational_times.published_arrival.date_local,
+				flight.operational_times.published_arrival.date_utc,
+				flight.operational_times.published_departure.date_local,
+				flight.operational_times.published_departure.date_utc,
+				flight.operational_times.scheduled_gate_arrival.date_local,
+				flight.operational_times.scheduled_gate_arrival.date_utc,
+				flight.operational_times.scheduled_gate_departure.date_local,
+				flight.operational_times.scheduled_gate_departure.date_utc,
+
+				flight.schedule.flight_type,
+				flight.schedule.service_classes,
+				flight.status
+			)
+    end
+
+    protected
+
+    def flights
+    	@flights ||= FlightStats::FlightStatus.departing_on @iata ,@flight_number, @year, @month, @day
     end
 
 	end
