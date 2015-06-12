@@ -9,8 +9,8 @@ class CreateFlightDetails < ActiveRecord::Migration
       t.string   :carrier_fs_code
       t.datetime :departure_date_local
       t.datetime :departure_date_utc
-      t.integer  :sheduled_block_minutes
-      t.string   :sheduled_equipment_iata_code
+      t.integer  :scheduled_block_minutes
+      t.string   :scheduled_equipment_iata_code
       t.integer  :flight_id
       t.string   :flight_number
       t.datetime :published_local_arrival

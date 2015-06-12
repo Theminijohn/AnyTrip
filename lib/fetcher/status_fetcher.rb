@@ -4,10 +4,10 @@ module Fetcher
 		attr_reader :trip, :iata, :flight_number, :year, :month, :day
 
     FlightDetail = Struct.new(
-			:arrival_airport_fs_code, :departure_airport_fs_code, :arrival_date_local, :arrival_date_utc, 
-			:carrier_fs_code, :departure_date_local, :departure_date_utc, :sheduled_block_minutes, 
-			:sheduled_equipment_iata_code, :flight_id, :flight_number, :published_local_arrival, :published_utc_arrival, 
-			:published_departure_local, :published_departure_utc, :scheduled_gate_arrival_local, :scheduled_gate_arrival_utc, 
+			:arrival_airport_fs_code, :departure_airport_fs_code, :arrival_date_local, :arrival_date_utc,
+			:carrier_fs_code, :departure_date_local, :departure_date_utc, :scheduled_block_minutes,
+			:scheduled_equipment_iata_code, :flight_id, :flight_number, :published_local_arrival, :published_utc_arrival,
+			:published_departure_local, :published_departure_utc, :scheduled_gate_arrival_local, :scheduled_gate_arrival_utc,
 			:scheduled_gate_departure_local, :scheduled_gate_departure_utc, :flight_type, :service_classes, :status
 		)
 
@@ -30,7 +30,7 @@ module Fetcher
 
 	private
 
-    def create_flight_details(flight)
+  	def create_flight_details(flight)
 			FlightDetail.new(
 				flight.arrival_airport_fs_code,
 				flight.departure_airport_fs_code,
@@ -39,7 +39,7 @@ module Fetcher
 
 				flight.carrier_fs_code,
 				flight.departure_date.date_local,
-				flight.departure_date.date_local,
+				flight.departure_date.date_utc,
 				flight.flight_durations.scheduled_block_minutes,
 
 				flight.flight_equipment.scheduled_equipment_iata_code,
