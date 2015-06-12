@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612211820) do
+ActiveRecord::Schema.define(version: 20150612214119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,10 +102,24 @@ ActiveRecord::Schema.define(version: 20150612211820) do
   add_index "flight_details", ["flight_id"], name: "index_flight_details_on_flight_id", using: :btree
   add_index "flight_details", ["trip_id"], name: "index_flight_details_on_trip_id", using: :btree
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
   create_table "trips", force: :cascade do |t|
     t.datetime "departure_date"
     t.text     "status"
     t.string   "flight_number"
+    t.string   "slug"
     t.integer  "user_id"
     t.integer  "airline_id"
     t.datetime "created_at",     null: false
@@ -114,6 +128,7 @@ ActiveRecord::Schema.define(version: 20150612211820) do
 
   add_index "trips", ["airline_id"], name: "index_trips_on_airline_id", using: :btree
   add_index "trips", ["departure_date"], name: "index_trips_on_departure_date", using: :btree
+  add_index "trips", ["slug"], name: "index_trips_on_slug", unique: true, using: :btree
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -127,6 +142,7 @@ ActiveRecord::Schema.define(version: 20150612211820) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.string   "slug"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "title"
@@ -135,8 +151,8 @@ ActiveRecord::Schema.define(version: 20150612211820) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["first_name"], name: "index_users_on_first_name", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
   create_table "whitelists", force: :cascade do |t|
     t.string   "email"

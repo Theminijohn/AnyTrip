@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  get 'users/show'
 
-  resources :trips
-  root 'pages#home'
+  devise_scope :user do
+    authenticated do
+      root 'pages#home'
+    end
+    unauthenticated do
+      root 'devise/sessions#new', as: 'unauthenticated_root'
+    end
+  end
 
-  devise_for :users, path: '',
+  devise_for :users, path: 'u',
     path_names: {
       sign_in: 'login',
       sign_out: 'logout',
@@ -14,6 +19,8 @@ Rails.application.routes.draw do
     	registrations: 'registrations'
     }
 
-  get 'users/:id' => 'users#show', as: :user 
+  get 'u/:id' => 'users#show', as: :user
+
+  resources :trips
 
 end

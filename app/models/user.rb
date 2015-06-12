@@ -4,5 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  extend FriendlyId
+  friendly_id :name
+
   has_many :trips, dependent: :destroy
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end

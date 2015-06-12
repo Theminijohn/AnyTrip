@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
-  layout :layout_by_resource
+  # layout :layout_by_resource
 
 protected
 
@@ -15,7 +15,9 @@ protected
 
   def layout_by_resource
     if devise_controller?
-      "devise_layout"
+      'devise_layout'
+    elsif devise_controller? && action_name == "edit"
+      "application"
     else
       "application"
     end
