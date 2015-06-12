@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612191913) do
+ActiveRecord::Schema.define(version: 20150612211820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,13 +63,13 @@ ActiveRecord::Schema.define(version: 20150612191913) do
   add_index "airports", ["city"], name: "index_airports_on_city", using: :btree
   add_index "airports", ["flight_detail_id"], name: "index_airports_on_flight_detail_id", using: :btree
 
-  create_table "airports_flight_details", id: false, force: :cascade do |t|
-    t.integer "airport_id",       null: false
-    t.integer "flight_detail_id", null: false
+  create_table "airports_trips", id: false, force: :cascade do |t|
+    t.integer "airport_id", null: false
+    t.integer "trip_id",    null: false
   end
 
-  add_index "airports_flight_details", ["airport_id", "flight_detail_id"], name: "airport_on_flight_id", using: :btree
-  add_index "airports_flight_details", ["flight_detail_id", "airport_id"], name: "flight_on_airport_id", using: :btree
+  add_index "airports_trips", ["airport_id", "trip_id"], name: "index_airports_trips_on_airport_id_and_trip_id", using: :btree
+  add_index "airports_trips", ["trip_id", "airport_id"], name: "index_airports_trips_on_trip_id_and_airport_id", using: :btree
 
   create_table "flight_details", force: :cascade do |t|
     t.string   "arrival_airport_fs_code"

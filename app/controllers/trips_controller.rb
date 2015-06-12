@@ -37,7 +37,7 @@ class TripsController < ApplicationController
           new_airport.assign_attributes(airport.to_h)
           new_airport.save!
         end
-        # @trip.airports << airport
+        @trip.airports << airport
       end
 
       redirect_to @trip, notice: 'Your Trip was successfully created, Have a nice Flight.'
