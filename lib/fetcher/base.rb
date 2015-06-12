@@ -1,7 +1,7 @@
 module Fetcher
 	class	Base
 
-		attr_reader 
+		attr_reader :trip, :iata, :flight_number, :year, :month, :day
 
 		def initialize(args)
 			@trip = args[:trip]
@@ -24,15 +24,15 @@ module Fetcher
 		def fetch
       begin
         perform
-      rescue StandardError
-        raise FetchError, "Try again later we couldn't connect to the API"
+      rescue StandardError => e
+        raise FetchError, e
       end
     end
 
 	protected
 
 		def flight_statistics
-			@flights = FlightStats::FlightStatus.departing_on @iata ,@flight_number, @year, @month, @day
+			@flights ||= FlightStats::FlightStatus.departing_on @iata ,@flight_number, @year, @month, @day
 		end
 
 	end
