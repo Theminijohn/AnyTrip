@@ -3,6 +3,7 @@ class CreateTrips < ActiveRecord::Migration
     create_table :trips do |t|
       t.datetime :departure_date
       t.text :status
+      t.string :flight_number
 
       # Associations
       t.integer :user_id
