@@ -21,7 +21,10 @@ class TripsController < ApplicationController
 
     begin
       status_data = Fetcher::StatusFetcher.new(trip: @trip).fetch
-      binding.pry
+      if status_data.any?
+        @trip.save
+        # Create flight_details records
+      end
     rescue Fetcher::FetchError, ActiveRecord::RecordInvalid => e
       error_message = e.message || "We couldn't verify that Flight, Please Contact TMJ."
       flash[:notice] = error_message
