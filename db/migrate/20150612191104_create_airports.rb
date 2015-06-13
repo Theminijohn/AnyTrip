@@ -31,7 +31,7 @@ class CreateAirports < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :airports, :city
-    add_idnex :airports, :iata
+    add_index :airports, :iata
     add_index :airports, :slug, unique: true
   end
 end

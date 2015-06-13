@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150612214119) do
     t.string   "name"
     t.string   "phone_number"
     t.boolean  "active"
+    t.string   "slug"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150612214119) do
   add_index "airlines", ["active"], name: "index_airlines_on_active", using: :btree
   add_index "airlines", ["icao"], name: "index_airlines_on_icao", using: :btree
   add_index "airlines", ["name"], name: "index_airlines_on_name", using: :btree
+  add_index "airlines", ["slug"], name: "index_airlines_on_slug", unique: true, using: :btree
 
   create_table "airports", force: :cascade do |t|
     t.string   "city"
@@ -55,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150612214119) do
     t.float    "utc_offset_hours"
     t.string   "weather_url"
     t.string   "weather_zone"
+    t.string   "slug"
     t.integer  "flight_detail_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
@@ -62,6 +65,8 @@ ActiveRecord::Schema.define(version: 20150612214119) do
 
   add_index "airports", ["city"], name: "index_airports_on_city", using: :btree
   add_index "airports", ["flight_detail_id"], name: "index_airports_on_flight_detail_id", using: :btree
+  add_index "airports", ["iata"], name: "index_airports_on_iata", using: :btree
+  add_index "airports", ["slug"], name: "index_airports_on_slug", unique: true, using: :btree
 
   create_table "airports_trips", id: false, force: :cascade do |t|
     t.integer "airport_id", null: false
