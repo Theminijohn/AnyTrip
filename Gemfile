@@ -14,6 +14,8 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'rails_config'
 gem 'friendly_id', '~> 5.1.0'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 
 # Users & Auth
 gem 'devise'

@@ -5,5 +5,7 @@
 //= require toastr
 //= require bootstrap-datepicker
 //= require chosen-jquery
+//= require underscore
+//= require gmaps/google
 //= require turbolinks
 //= require_tree .
