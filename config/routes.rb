@@ -23,4 +23,6 @@ Rails.application.routes.draw do
 
   resources :trips
 
+  resources :airports, only: [:index, :show]
+
 end

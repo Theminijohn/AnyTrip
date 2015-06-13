@@ -7,18 +7,19 @@
 
 	<div class="row">
 		<div class="col-sm-6 col-lg-4">
-		  <a class="page-box-link" href="#">
-		  <article class="page-box">
-		    <h3 class="entry-title">Flights Tracked</h3>
+      <%= link_to trips_path, class: 'page-box-link' do %>
+        <article class="page-box">
+            <h3 class="entry-title">Trips Tracked</h3>
 
-		    <p class="entry-excerpt">
-		    	<%= Trip.count %>
-		    </p>
+            <p class="entry-excerpt">
+            <%= Trip.count %>
+            </p>
 
-		    <div class="page-box-destination">
-		      <span><i class="fa fa-map-marker"></i> See all Trips</span>
-		    </div>
-		  </article></a>
+            <div class="page-box-destination">
+            <span><i class="fa fa-map-marker"></i> See all Trips</span>
+            </div>
+        </article>
+      <% end %>
 		</div>
 
 		<div class="col-sm-6 col-lg-4">

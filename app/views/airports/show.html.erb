@@ -1,0 +1,5 @@
+<h1><%= @airport.name %></h1>
+
+<% @airport.trips.each do |trip| %>
+  <b><%= trip.user.first_name %></b> visited with <b><%= trip.airline.name %></b>
+<% end %>
