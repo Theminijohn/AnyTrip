@@ -1,0 +1,30 @@
+.AirportHeader {
+	margin-top: -20px;
+	min-height: 470px;
+  background: transparent;
+  position: relative;
+  background-image: url('http://www.ansonika.com/citytours/img/transfer_top.jpg');
+  background-size: cover;
+	background-position: center;
+  .content {
+		display: table;
+		width: 100%;
+		height: 470px;
+		.inner {
+			display: table-cell;
+			padding: 0 15%;
+			vertical-align: middle;
+			text-align: center;
+			color: #fff;
+			font-size: 16px;
+			h1 {
+				font-family: 'Titillium Web', sans-serif;
+				margin-bottom: 0;
+				padding-top: 40px;
+				font-size: 48px;
+				font-weight: 700;
+				color: #fff;
+			}
+		}
+  }
+}

@@ -1,12 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700);
 
-$body-bg:                #fff;
+$body-bg:                #f9f9f9;
 $font-family-sans-serif: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $navbar-height:          45px;
 // $navbar-default-bg:      white;
 // $link-hover-decoration:  none;
-$text-color:             #5e6d81;
+// $text-color:             #5e6d81;
+$text-color:             #333;
 $text-muted:             #a4a4a4;
 
 // Default Container Width
@@ -23,6 +24,8 @@ $container-large-desktop:  ((800px + $grid-gutter-width));
 
 @import 'base/*';
 @import 'devise/*';
+@import 'trips/*';
+@import 'airports/*';
 
 .top_pretty_bar {
 	height: 3px;

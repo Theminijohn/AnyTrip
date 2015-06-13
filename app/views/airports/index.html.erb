@@ -1,5 +1,27 @@
-<h1>Airports</h1>
+<section class="AirportHeader">
+	<div class="content">
+		<div class="inner">
+			<h1>AnyAirport</h1>
+			<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+		</div>
+	</div>
+</section>
+<div id="position">
+	<div class="container clearfix">
+		<ul class="pull-left">
+			<li>
+				AnyRoadies have traveled to
+			</li>
+			<li>
+				<i class="ion-location"></i>
+				<a href="#"><%= Airport.count %> Airports </a>
+			</li>
+		</ul>
+	</div>
+</div>
 
-<% @airports.each do |airport| %>
-  <%= link_to airport.slug, airport %>, <br>
-<% end %>
+<div class="container">
+	<% @airports.each do |airport| %>
+		<%= link_to airport.slug, airport %>, <br>
+	<% end %>
+</div>
