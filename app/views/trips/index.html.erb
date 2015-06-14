@@ -1,31 +1,53 @@
-<h1>Listing Trips</h1>
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-3">
+      s
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Airline</th>
-      <th>Departure date</th>
-      <th>Flight number</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="col-md-9">
+      <ul class="timeline">
 
-  <tbody>
-    <% @trips.each do |trip| %>
-      <tr>
-        <td><%= trip.airline %></td>
-        <td><%= trip.departure_date %></td>
-        <td><%= trip.flight_number %></td>
-        <td><%= trip.status %></td>
-        <td><%= link_to 'Show', trip %></td>
-        <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-        <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <% @trips.each do |trip| %>
 
-<br>
+          <!-- Trip Overview -->
+          <li class="tl-item">
+            <div class="tl-wrap">
+              <span class="tl-date">
+                4:20 PM <br>
+                6-14-15
+              </span>
+              <div class="tl-content panel padder b-a w-md w-auto-xs">
+                <span class="arrow left pull-up"></span>
+                <div class="text-lt m-b-sm">
+                  <%= link_to trip.user.first_name, trip.user %>
+                  <div class="pull-right">
+                    <%= link_to 'View Trip', trip, class: 'btn btn-xs btn-default' %>
+                  </div>
+                </div>
+                <div class="panel-body pull-in b-t b-light">
+                    
+                  <i class="ion-location"></i> <b>(ATH) Athens, GR</b> &nbsp; to &nbsp;
+                  <i class="ion-location"></i> <b>(MXP) Milan, IT</b> &nbsp; for &nbsp;
+                  <i class="ion-arrow-graph-up-left"></i> <b>4.371</b> &nbsp; miles
 
-<%= link_to 'New Trip', new_trip_path %>
+                  <div class="" style="display: block">
+                    <i class="ion-plane"></i> (A3) Aegean Airlines 664
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </li>
+
+        <% end %>
+
+
+        <li class="tl-header">
+          <div class="btn btn-sm btn-default btn-rounded">Bon Voyage</div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

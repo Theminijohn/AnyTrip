@@ -1,9 +1,12 @@
 <div style='width: 100%;margin-top:-20px;'>
-  <div id="map" style='width: 100%; height: 400px;'></div>
+  <div id="map" style='width: 100%; height: 300px;'></div>
 </div>
 <div id="position">
 	<div class="container clearfix">
 		<ul class="pull-left">
+		<span class="label text-base bg-primary pos-rlt m-r">
+  	<i class="arrow right arrow-primary"></i> 4.432
+  </span>
 			<li>
 				<a href="#">
 					The Mini John's
@@ -41,141 +44,163 @@
 <% @arrival   = Airport.find_by_iata(@trip.flight_details.first.arrival_airport_fs_code) %>
 
 <script type="text/javascript">
-$(document).ready(function () {
-	var handler = Gmaps.build('Google');
-	handler.buildMap({ internal: {id: 'map'}}, function(){
-	  var markers = handler.addMarkers([
-	    { lat: <%= @departure.latitude %>, lng: <%= @departure.longitude %>},
-	    { lat: <%= @arrival.latitude %>, lng: <%= @arrival.longitude %>}
-	  ]);
-	  handler.bounds.extendWith(markers);
-		var polylines = handler.addPolylines(
-		  [
-		    [
-		      {lat: <%= @departure.latitude %>, lng: <%= @departure.longitude %>},
-		      {lat: <%= @arrival.latitude %>, lng: <%= @arrival.longitude %>}
-		    ]
-		  ],
-		  { strokeColor: '#f76570'}
-		);
-		handler.bounds.extendWith(polylines);
-	  handler.fitMapToBounds();
+	$(document).ready(function () {
+
+		var mapStyle = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"featureType":"transit","elementType":"all","stylers":[{"color":"#146474"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#021019"}]}];
+
+		var handler = Gmaps.build('Google');
+		handler.buildMap({ internal: {id: 'map'}, provider: { styles: mapStyle}}, function(){
+		  var markers = handler.addMarkers([
+		    { lat: <%= @departure.latitude %>, lng: <%= @departure.longitude %>},
+		    { lat: <%= @arrival.latitude %>, lng: <%= @arrival.longitude %>}
+		  ]);
+		  handler.bounds.extendWith(markers);
+
+			var polylines = handler.addPolylines(
+			  [
+			    [
+			      {lat: <%= @departure.latitude %>, lng: <%= @departure.longitude %>},
+			      {lat: <%= @arrival.latitude %>, lng: <%= @arrival.longitude %>}
+			    ]
+			  ],
+			  { strokeColor: '#f76570'}
+			);
+			handler.bounds.extendWith(polylines);
+		  handler.fitMapToBounds();
+		});
 	});
-	    
-});
 </script>
 
 <br>
 
-
 <div class="container">
-  <div class="row profile">
-    <div class="col-md-4">
-    	<div class="StatusBox">
-			  <i class="ion-flash"></i>
+	<div class="row">
+		
+		<div class="col-md-4">
+			<section class="TripOverview">
 
-			  <h4>
-			  	Status
-			  </h4>
+	      <div class="TripUser">
+	      	<a href="" class="Avatar pull-left">
+            <img src="http://flatfull.com/themes/angulr/angular/img/a4.jpg" class="img-circle">
+          </a>
+          <div class="clearfix" style="margin-top: 5px;">
+            <a href="" class="UserName">
+            	<%= @trip.user.first_name %>
+            </a>
+            <small class="text-muted">
+            	2,415 miles / 2 trips
+            </small>
+          </div>
+	      </div>
 
-			  <a class="status_text">
-			  	SCHEDULED
-			  </a> 
+			</section>
+		</div>
+
+		<div class="col-md-8">
+
+
+			<div class="TripStatus">
+				<a class="pull-left Symbol">
+					<i class="ion-speakerphone"></i>
+				</a>          
+				<div class="StatusText">
+					<div class="Inner">
+						<span class="arrow left pull-up"></span>
+						<span class="text-muted pull-right">
+							10m ago
+						</span>
+						Scheduled for <b>2:40 PM - Sun Jun-14-2015</b>
+					</div>
+				</div>
 			</div>
 
-      <div class="profile-sidebar">
+			<ul class="timeline">
 
-        <div class="profile-userpic">
-        	<img class="img-responsive" src="https://pbs.twimg.com/profile_images/581516445907087360/-MqWfsEN.png">
-        </div>
+        <!-- Trip Overview -->
+        <li class="tl-item">
+          <div class="tl-wrap">
+            <span class="tl-date">Overview</span>
+            <div class="tl-content panel padder b-a w-md w-auto-xs">
+              <span class="arrow left pull-up"></span>
+              <div class="text-lt m-b-sm">(A3) Aegean Airlines 664</div>
+              <div class="panel-body pull-in b-t b-light">
+                
+								<table class="table table-striped m-b-none">
+								  <thead>
+								    <tr>
+								      <th></th>                    
+								      <th style="width:70px;"></th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								    <tr>                    
+								      <td>Miles for this Trip</td>
+								      <td class="text-success">
+								        <i class="ion-speedometer"></i> 4.105
+								      </td>
+								    </tr>
+								    <tr>
+								      <td>Airports Touched</td>
+								      <td class="text-success">
+								        <i class="ion-plane"></i> 2
+								      </td>
+								    </tr>
+								    <tr>                    
+								      <td>Duration</td>
+								      <td class="text-warning">
+								        <i class="ion-clock"></i> 2:40
+								      </td>
+								    </tr>
+								  </tbody>
+								</table>
 
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name">
-            The Mini John
+              </div>
+            </div>
           </div>
+        </li>
 
-          <div class="profile-usertitle-job">
-            Rank: 3
+<!--    <li class="tl-item">
+          <div class="tl-wrap b-info">
+            <span class="tl-date">2:40 PM</span>
+            <div class="tl-content">
+              Scheduled Department
+            </div>
           </div>
-        </div>
+        </li> -->
+
+        <!-- Scheduled Departure -->
+        <li class="tl-item">
+          <div class="tl-wrap b-success">
+            <span class="tl-date">2:40pm</span>
+            <div class="tl-content panel padder b-a">
+              <span class="arrow left pull-up"></span>
+              <div>Scheduled Departure from <b>(ATH) Athens, GR</b></div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Scheduled Arrival -->
+        <li class="tl-item tl-left">
+          <div class="tl-wrap b-success">
+            <span class="tl-date">7:30 am</span>
+            <div class="tl-content panel bg-success padder">
+              <span class="arrow arrow-success left pull-up hidden-left"></span>
+              <span class="arrow arrow-success right pull-up visible-left"></span>
+              <div class="text-lt">Scheduled Arrival at <b>(MXP) Milan, IT</b></div>
+            </div>
+          </div>
+        </li>
+
+        <li class="tl-header">
+          <div class="btn btn-sm btn-default btn-rounded">Bon Voyage</div>
+        </li>
+      </ul>
 
 
-        <div class="profile-userbuttons">
-          <button class="btn btn-success btn-sm" type="button">Follow</button> 
-          <button class="btn btn-danger btn-sm" type="button">Message</button>
-        </div>
+		</div>
 
-        <div class="profile-usermenu">
-          <ul class="nav">
-            <li>
-              <a href="#">
-              	<i class="ion-map"></i>
-              	15 Trips
-              </a>
-            </li>
-
-            <li>
-              <a href="#">
-              	<i class="ion-speedometer"></i>
-              	4.256 Miles
-              </a>
-            </li>
-
-            <li>
-              <a href="#">
-              	<i class="ion-android-pin"></i>
-              	8 Airports
-              </a>
-            </li>
-
-            <li>
-              <a href="#">
-              	<i class="ion-android-plane"></i>
-              	4 Airlines
-              </a>
-            </li>
-          </ul>
-        </div><!-- END MENU -->
-      </div>
-
-    </div>
-
-    <div class="col-md-8">
-      <div class="profile-content">
-
-				<div class="panel panel-table">
-					<div class="panel-heading">
-						<div class="tr">
-						  <div class="td">
-						    Departure
-						  </div>
-
-						  <div class="td">
-						    Arrival
-						  </div>
-						</div>
-					</div>
-
-					<div class="panel-body">
-						<div class="tr">
-						  <div class="td">
-						    Scheduled Departure: <br>
-						    <b>6:30 PM - Sat Jun-13-2015</b>
-						  </div>
-
-						  <div class="td">
-						    Scheduled Arrival: <br>
-						    <b>7:35 PM - Sat Jun-13-2015</b>
-						  </div>
-						</div>
-					</div>
-				</div>
-
-				<div class="inner">
-					Duration: <b>1h 05m</b>
-				</div>
-
-      </div>
-    </div>
-  </div>
+	</div>
 </div>
+
+
+
